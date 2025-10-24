@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # --- CONFIGURACIÓN INICIAL ---
-        año_actual = 2025 # O el año que desees para empezar
+        año_actual = 2003 # O el año que desees para empezar
         todos_los_links = []
         
         # --- CONFIGURACIÓN DE SELENIUM ---
@@ -41,8 +41,8 @@ class Command(BaseCommand):
             # --- FASE 1: OBTENER TODOS LOS LINKS DE PELÍCULAS ---
             self.stdout.write(self.style.NOTICE("--- FASE 1: Recopilando links de películas ---"))
             año = año_actual
-            while año >= 2010: # Cambia el año final si lo necesitas
-                url = f"https://www.imdb.com/search/title/?title_type=feature&release_date={año}-01-01,{año}-12-31&user_rating=6,10&num_votes=40000,&sort=user_rating,desc&ref_=adv_prv"
+            while año >= 1960:
+                url = f"https://www.imdb.com/search/title/?title_type=feature&release_date={año}-01-01,{año}-12-31&user_rating=5,10&num_votes=50000,&sort=user_rating,desc&ref_=adv_prv"
                 driver.get(url)
                 
                 try:
