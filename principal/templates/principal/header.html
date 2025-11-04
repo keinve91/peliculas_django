@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,15 +13,141 @@
         body {
             background-color: #212529;
             color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .custom-navbar {
+            background-color: #111 !important; 
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .custom-navbar-logo-img {
+            height: 30px;
+        }
+
+        .custom-navbar .nav-link {
+            color: white !important;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            font-size: 14px;
+        }
+        
+        .custom-navbar .nav-link:hover {
+            opacity: 1;
+        }
+
+        .custom-navbar .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .custom-navbar .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .custom-btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .custom-btn-login {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .custom-btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .custom-btn-demo {
+            background-color: #d44a00;
+            border: none;
+        }
+        .custom-btn-demo:hover {
+            background-color: #ff6a1a;
+            color: white;
+        }
+
+        
+        @media (max-width: 991.98px) {
+            .custom-navbar .navbar-collapse {
+                padding-top: 1rem;
+            }
+            .custom-navbar .nav-link {
+                padding: 0.5rem 0;
+            }
+            
+            .custom-btn-login {
+                margin-bottom: 0.75rem; 
+            }
+        }
+
+
+        @media (min-width: 992px) {
+            .custom-navbar .nav-link {
+                 margin-left: 1rem;
+            }
+            .custom-btn-login {
+                margin-right: 0.75rem;
+            }
         }
     </style>
 </head>
 <body class="bg-dark">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary shadow-sm mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/">🎬 PelisScraper</a>
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid px-3 px-lg-4">
+            <a class="navbar-brand" href="http://127.0.0.1:8000/">
+                <img src="{% static 'images/logo.png' %}" alt="Logo Planhat" class="custom-navbar-logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsiveContent" aria-controls="navbarResponsiveContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsiveContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Platform</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./editorial">Editorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./impact-studies">Customers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pricing">Pricing</a></li>
+                </ul>
+
+                <div class="d-flex flex-column flex-lg-row">
+                    <a href="#" class="custom-btn custom-btn-login">Log in</a>
+                    <a href="#" class="custom-btn custom-btn-demo">Request a demo</a>
+                </div>
+            </div>
         </div>
     </nav>
-
     <main class="container">
+        <h1 class="mt-4">Contenido Principal</h1>
+        <p>Tu contenido de PelisScraper va aquí...</p>
+    </main>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            const menuItems = document.querySelectorAll('#navbarResponsiveContent .nav-link, #navbarResponsiveContent .custom-btn');
+            
+            const collapseElement = document.getElementById('navbarResponsiveContent');
+                        const bsCollapse = new bootstrap.Collapse(collapseElement, {
+                toggle: false
+            });
+
+            menuItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    if (collapseElement.classList.contains('show')) {
+                        bsCollapse.hide();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
